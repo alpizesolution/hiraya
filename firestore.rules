@@ -255,8 +255,8 @@ service cloud.firestore {
       let data = request.resource.data;
       return hasRequiredFields(['reportedByUid', 'reason', 'category', 'contentType', 'createdAt']) &&
              data.reportedByUid == request.auth.uid &&
-             (!('reportedUid' in data) || data.reportedUid is string) &&
-             (!('contentId' in data) || data.contentId is string) &&
+             (!('reportedUid' in data) || data.reportedUid == null || data.reportedUid is string) &&
+             (!('contentId' in data) || data.contentId == null || data.contentId is string) &&
              data.contentType in ['whisper', 'memory', 'user'] &&
              validStringLength('reason', 1, 500) &&
              validStringLength('category', 1, 50) &&
@@ -371,13 +371,14 @@ service cloud.firestore {
     match /unsaidThoughts/{thoughtId} {
       allow read: if true;
       allow create: if isAuthenticated() && isValidUnsaidThought();
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['viewCount']) && request.resource.data.viewCount is number;
       allow delete: if isOwner(resource.data.userId) || isAdmin();
     }
 
     match /memories/{memoryId} {
       allow read: if true;
       allow create: if isAuthenticated() && isValidMemory();
-      allow update: if isOwner(resource.data.userId) && isValidMemory() && areImmutableFieldsUnchanged(['userId', 'createdAt']);
+      allow update: if (isOwner(resource.data.userId) && isValidMemory() && areImmutableFieldsUnchanged(['userId', 'createdAt'])) || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['viewCount']) && request.resource.data.viewCount is number);
       allow delete: if isOwner(resource.data.userId) || isAdmin();
     }
     
