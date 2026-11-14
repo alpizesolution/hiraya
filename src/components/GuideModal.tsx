@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { X, Sparkles, MapPin, MessageSquare, Users, Globe, Star } from 'lucide-react';
 
 import { ModalPortal } from './ModalPortal';
 
 export const GuideModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -109,6 +111,16 @@ export const GuideModal: React.FC = () => {
               className="w-full py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl font-bold transition-all border border-white/10 active:scale-[0.98]"
             >
               Begin Your Journey
+            </button>
+
+            <button
+              onClick={() => {
+                closeGuide();
+                navigate('/about');
+              }}
+              className="w-full mt-4 text-[10px] uppercase tracking-[0.3em] font-bold text-white/30 hover:text-purple-300 transition-colors"
+            >
+              About the Developer
             </button>
           </motion.div>
         </div>

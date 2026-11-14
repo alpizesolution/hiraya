@@ -107,6 +107,12 @@ export const WelcomePage: React.FC = () => {
           className="mt-16 text-[10px] uppercase tracking-[0.3em] text-white/20 font-bold"
         >
           v1.0.0 • Made with stardust
+          <button
+            onClick={() => navigate('/about')}
+            className="block mx-auto mt-3 uppercase tracking-[0.3em] font-bold text-white/30 hover:text-purple-300 transition-colors"
+          >
+            About the Developer
+          </button>
         </motion.div>
       </motion.div>
 

@@ -151,3 +151,9 @@ html, body, #root {
     filter: blur(45px) brightness(1.1);
   }
 }
+
+/* Buy Me a Coffee widget: only visible on pages that opt in (see lib/bmcWidget.ts) */
+html:not(.bmc-widget-visible) #bmc-wbtn,
+html:not(.bmc-widget-visible) div:has(> #bmc-iframe) {
+  display: none !important;
+}

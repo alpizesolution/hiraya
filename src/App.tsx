@@ -17,6 +17,7 @@ import { CreateActionHub } from './components/CreateActionHub';
 import { SignalModal } from './components/SignalModal';
 import { GuideModal } from './components/GuideModal';
 import { WelcomePage } from './components/WelcomePage';
+import { AboutPage } from './components/AboutPage';
 import { Search, Sparkles, Star, LogIn, X, Loader2, Globe, Plus, CircleHelp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { db } from './firebase';
@@ -293,6 +294,7 @@ const MainApp: React.FC = () => {
       
       <Routes>
         <Route path="/" element={<WelcomePage />} />
+        <Route path="/about" element={<AboutPage />} />
         
         <Route path="/login" element={
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050510]">

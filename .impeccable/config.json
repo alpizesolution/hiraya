@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "src/components/AboutPage.tsx"
+        ],
+        "createdAt": "2026-11-14T17:29:27.254Z",
+        "reason": "user brief section 5 specifies dark cosmic aesthetic with purple and violet accents; BMC brand color #BD5FFF given by user"
+      }
+    ]
+  }
+}
